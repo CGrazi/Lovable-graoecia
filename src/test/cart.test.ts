@@ -17,7 +17,7 @@ describe("carrinho", () => {
     let items = addItem([], item("a", "Em grãos", 1, 10));
     items = addItem(items, item("a", "Em grãos", 2, 10));
     expect(items).toHaveLength(1);
-    expect(items[0].quantity).toBe(3);
+    expect(items[0]?.quantity).toBe(3);
   });
 
   it("separa o mesmo café com moagens diferentes", () => {
@@ -28,8 +28,8 @@ describe("carrinho", () => {
 
   it("limita a quantidade entre 1 e o máximo", () => {
     const items = addItem([], item("a", "Em grãos", 1, 10));
-    expect(setQuantity(items, "a__Em grãos", 0)[0].quantity).toBe(1);
-    expect(setQuantity(items, "a__Em grãos", 999)[0].quantity).toBe(MAX_QTY);
+    expect(setQuantity(items, "a__Em grãos", 0)[0]?.quantity).toBe(1);
+    expect(setQuantity(items, "a__Em grãos", 999)[0]?.quantity).toBe(MAX_QTY);
   });
 
   it("remove um item", () => {

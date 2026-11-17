@@ -32,7 +32,7 @@ const filters: { label: string; roasts: Roast[] | null }[] = [
 
 function Catalog() {
   const [active, setActive] = useState(0);
-  const roasts = filters[active].roasts;
+  const roasts = filters[active]?.roasts ?? null;
   const list = roasts ? products.filter((p) => roasts.includes(p.roast)) : products;
 
   return (

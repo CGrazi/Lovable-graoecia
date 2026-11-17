@@ -32,7 +32,7 @@ export const Route = createFileRoute("/finalizar")({
   component: CheckoutPage,
 });
 
-function Field({ label, error, children, className }: { label: string; error?: string; children: ReactNode; className?: string }) {
+function Field({ label, error, children, className }: { label: string; error?: string | undefined; children: ReactNode; className?: string }) {
   return (
     <label className={`block ${className ?? ""}`}>
       <span className="text-sm font-semibold">{label}</span>
