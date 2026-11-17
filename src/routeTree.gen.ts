@@ -10,33 +10,102 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CarrinhoRouteImport } from './routes/carrinho'
+import { Route as FinalizarRouteImport } from './routes/finalizar'
+import { Route as PedidoConfirmadoRouteImport } from './routes/pedido-confirmado'
+import { Route as CafesIndexRouteImport } from './routes/cafes.index'
+import { Route as CafesSlugRouteImport } from './routes/cafes.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CarrinhoRoute = CarrinhoRouteImport.update({
+  id: '/carrinho',
+  path: '/carrinho',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FinalizarRoute = FinalizarRouteImport.update({
+  id: '/finalizar',
+  path: '/finalizar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PedidoConfirmadoRoute = PedidoConfirmadoRouteImport.update({
+  id: '/pedido-confirmado',
+  path: '/pedido-confirmado',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CafesIndexRoute = CafesIndexRouteImport.update({
+  id: '/cafes/',
+  path: '/cafes/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CafesSlugRoute = CafesSlugRouteImport.update({
+  id: '/cafes/$slug',
+  path: '/cafes/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/carrinho': typeof CarrinhoRoute
+  '/finalizar': typeof FinalizarRoute
+  '/pedido-confirmado': typeof PedidoConfirmadoRoute
+  '/cafes/$slug': typeof CafesSlugRoute
+  '/cafes/': typeof CafesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/carrinho': typeof CarrinhoRoute
+  '/finalizar': typeof FinalizarRoute
+  '/pedido-confirmado': typeof PedidoConfirmadoRoute
+  '/cafes/$slug': typeof CafesSlugRoute
+  '/cafes': typeof CafesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/carrinho': typeof CarrinhoRoute
+  '/finalizar': typeof FinalizarRoute
+  '/pedido-confirmado': typeof PedidoConfirmadoRoute
+  '/cafes/$slug': typeof CafesSlugRoute
+  '/cafes/': typeof CafesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/carrinho'
+    | '/finalizar'
+    | '/pedido-confirmado'
+    | '/cafes/$slug'
+    | '/cafes/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/carrinho'
+    | '/finalizar'
+    | '/pedido-confirmado'
+    | '/cafes/$slug'
+    | '/cafes'
+  id:
+    | '__root__'
+    | '/'
+    | '/carrinho'
+    | '/finalizar'
+    | '/pedido-confirmado'
+    | '/cafes/$slug'
+    | '/cafes/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CarrinhoRoute: typeof CarrinhoRoute
+  FinalizarRoute: typeof FinalizarRoute
+  PedidoConfirmadoRoute: typeof PedidoConfirmadoRoute
+  CafesSlugRoute: typeof CafesSlugRoute
+  CafesIndexRoute: typeof CafesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +117,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/carrinho': {
+      id: '/carrinho'
+      path: '/carrinho'
+      fullPath: '/carrinho'
+      preLoaderRoute: typeof CarrinhoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/finalizar': {
+      id: '/finalizar'
+      path: '/finalizar'
+      fullPath: '/finalizar'
+      preLoaderRoute: typeof FinalizarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pedido-confirmado': {
+      id: '/pedido-confirmado'
+      path: '/pedido-confirmado'
+      fullPath: '/pedido-confirmado'
+      preLoaderRoute: typeof PedidoConfirmadoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cafes/': {
+      id: '/cafes/'
+      path: '/cafes'
+      fullPath: '/cafes/'
+      preLoaderRoute: typeof CafesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cafes/$slug': {
+      id: '/cafes/$slug'
+      path: '/cafes/$slug'
+      fullPath: '/cafes/$slug'
+      preLoaderRoute: typeof CafesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CarrinhoRoute: CarrinhoRoute,
+  FinalizarRoute: FinalizarRoute,
+  PedidoConfirmadoRoute: PedidoConfirmadoRoute,
+  CafesSlugRoute: CafesSlugRoute,
+  CafesIndexRoute: CafesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

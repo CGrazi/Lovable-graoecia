@@ -28,3 +28,8 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+- Product catalog lives in `src/data/products.ts` (static data); no backend yet, so catalog edits are code edits.
+- Cart math lives as pure functions in `src/lib/cart.ts` (tested in `src/test/cart.test.ts`); the React cart context only wraps them and persists to localStorage, so keep pricing logic out of components.
+- Checkout validation schema lives in `src/lib/order.ts` (zod); the last placed order is kept in sessionStorage only for the confirmation page — orders are not persisted anywhere yet.
